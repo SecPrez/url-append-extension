@@ -35,7 +35,12 @@ chrome.runtime.onInstalled.addListener(function() {
       'frame'
     ]
   });
-
+  chrome.action.onClicked.addListener((tab) => {
+    chrome.scripting.executeScript({
+      target: {tabId: tab.id},
+      files: ['addToClipboard.js']
+    });
+  });
   chrome.action.setIcon({
     path: 'icon/LearnAppenderIcon128.png'
    });

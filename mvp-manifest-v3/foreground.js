@@ -77,70 +77,70 @@ function removeTrackingTags(str) {
 //TODO: Add logic to remove locale.
 //}
 
-chrome.runtime.onInstalled.addListener(function () {
-  chrome.contextMenus.create({
-    'id': 'copy-page-url',
-    'title': 'Copy URL and add tracking',
-    'contexts': [
-      'page',
-      'selection',
-      'link',
-      'editable',
-      'image',
-      'video',
-      'audio'
-    ]
-  });
+// chrome.runtime.onInstalled.addListener(function () {
+//   chrome.contextMenus.create({
+//     'id': 'copy-page-url',
+//     'title': 'Copy URL and add tracking',
+//     'contexts': [
+//       'page',
+//       'selection',
+//       'link',
+//       'editable',
+//       'image',
+//       'video',
+//       'audio'
+//     ]
+//   });
 
-  chrome.contextMenus.create({
-    'id': 'copy-frame-url',
-    'title': 'Copy Frame URL',
-    'contexts': [
-      'frame'
-    ]
-  });
+//   chrome.contextMenus.create({
+//     'id': 'copy-frame-url',
+//     'title': 'Copy Frame URL',
+//     'contexts': [
+//       'frame'
+//     ]
+//   });
 
-  chrome.action.setBadgeBackgroundColor({
-    color: '#32cd32'
-  });
-});
+//   chrome.action.setBadgeBackgroundColor({
+//     color: '#32cd32'
+//   });
+// });
 
-chrome.contextMenus.onClicked.addListener(function (info) {
-  if (info.menuItemId === 'copy-page-url') {
-    copy(info.pageUrl);
-  } else if (info.menuItemId === 'copy-frame-url') {
-    copy(info.frameUrl);
-  }
-});
+// chrome.contextMenus.onClicked.addListener(function (info) {
+//   if (info.menuItemId === 'copy-page-url') {
+//     copy(info.pageUrl);
+//   } else if (info.menuItemId === 'copy-frame-url') {
+//     copy(info.frameUrl);
+//   }
+// });
 
-chrome.action.onClicked.addListener(function (tab) {
-  copy(tab.url);
-  setBadgeText('OK!');
-  clearTimeout(timeout);
-  timeout = setTimeout(setBadgeText.bind(null, ''), 1000);
-});
+// chrome.action.onClicked.addListener(function (tab) {
+//   copy(tab.url);
+//   setBadgeText('OK!');
+//   clearTimeout(timeout);
+//   timeout = setTimeout(setBadgeText.bind(null, ''), 1000);
+// });
 
-chrome.tabs.onActivated.addListener(function () {
-  clearTimeout(timeout);
-  setBadgeText('');
-});
+// chrome.tabs.onActivated.addListener(function () {
+//   clearTimeout(timeout);
+//   setBadgeText('');
+// });
 
-chrome.runtime.onMessage.addListener(function (message) {
-  if (!message.options) {
-    return;
-  }
+// chrome.runtime.onMessage.addListener(function (message) {
+//   if (!message.options) {
+//     return;
+//   }
 
-  Object.keys(message.options).forEach(function (key) {
-    options[key] = message.options[key];
-  });
+//   Object.keys(message.options).forEach(function (key) {
+//     options[key] = message.options[key];
+//   });
 
-  var opts = message.options;
-  if (opts.toolbar_icon) {
-    setIcon(opts.toolbar_icon);
-  }
-});
+//   var opts = message.options;
+//   if (opts.toolbar_icon) {
+//     setIcon(opts.toolbar_icon);
+//   }
+// });
 
-chrome.storage.sync.get(defaults, function (items) {
-  options = items;
-  setIcon(items.toolbar_icon);
-});
+// chrome.storage.sync.get(defaults, function (items) {
+//   options = items;
+//   setIcon(items.toolbar_icon);
+// });
