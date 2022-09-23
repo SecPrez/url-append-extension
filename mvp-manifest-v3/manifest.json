@@ -4,10 +4,11 @@
    "manifest_version": 3,
    "version": "1.0",
    "background": {
-      "service_worker": "background.js"
+      "service_worker": "background.js",
+      "type": "module"
    },
-   "permissions": [ "activeTab", "clipboardWrite", "contextMenus", "storage", "scripting" ],
-   "host_permissions": ["<all_urls>"],
+   "permissions": [ "activeTab", "tabs", "clipboardWrite", "contextMenus", "storage", "scripting" ],
+   "host_permissions": ["*://*.docs.microsoft.com/*", "*://*.learn.microsoft.com/*" ],
    "action": {
       "default_popup": "options.html",
       "default_icons": {

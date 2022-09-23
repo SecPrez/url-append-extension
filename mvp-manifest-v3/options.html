@@ -1,19 +1,50 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Microsoft Learn URL Appender Options</title>
-    <script src="options.js" type="module"></script>
-  </head>
-  <body>
-    <div>
-        <h1>Settings</h1>
-    </div>
-    <form id="control-row">
-        <label for="input">Tracking parameter to append:</label>
-        <input type="text" id="input">
-        <br>
-        <button id="go">Save</button>
-      </form>
-      <span id="message" hidden></span>
-  </body>
+<head>
+  <title>Microsoft Learn URL Appender Options</title>
+  <style type="text/css">
+    input[type="radio"] {
+      vertical-align: middle;
+    }
+
+    .option {
+      margin-top: 10px;
+      display: inline-block;
+    }
+
+    .delimeter {
+      display: inline-block;
+      width: 20px;
+    }
+
+    .icon {
+      width: 32px;
+      height: 32px;
+      vertical-align: middle;
+    }
+
+    body {
+      overflow: hidden; /* Hide scrollbars */
+   }
+  </style>
+
+ 
+</head>
+<body>
+  <div>
+    <h1>Settings</h1>
+    <p>The input saved below is what will be appended to the end of URLs copied using this extension. The extension will remove any tracking parameters that were already on the URL and append the text below.</p>
+    <label for="trackingParam">Tracking parameter to append</label>
+    <input type="text" name="trackingParam" id="trackingParam" value="" size="65">
+    <br><br>
+    <!-- For some reason chrome will not let you directly reference event callbacks
+    You must wait for the page to load and then register them -->
+    <button id="save">Save</button>
+    <div id="status"></div>
+  </div>
+  <br>
+
+  <script type = "module" src="options.js"></script>
+  <!--Part of the restructuring of JS as a module system for the background service worker requirement of v3. Since we had to do the module conversion for bg.js, it became a bit of an all-or-nothing problem. The export in defaults breaks normal browser loading (where export is not allowed in default when it's not loaded as a module), which means we had to do the same module loading here as well.-->
+</body>
 </html>
