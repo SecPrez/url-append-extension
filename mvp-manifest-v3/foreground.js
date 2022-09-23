@@ -49,8 +49,10 @@ function setBadgeText(text) {
 }
 
 function cleanURL(url) {
-  var a = document.createElement('a');
-  a.href = url;
+  //Original: 
+  //var a = document.createElement('a');
+  //a.href = url;
+  var a = new URL(url);
   //Original search line = a.search = removeTrackingTags(a.search.replace(/^\?/,''));
   //Only difference is (.*) removed.
   a.search = removeTrackingTags(a.search.replace(/^\?(.*)/, ''));

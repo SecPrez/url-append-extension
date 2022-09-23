@@ -44,6 +44,7 @@
   </div>
   <br>
 
-  <script src="options.js"></script>
+  <script type = "module" src="options.js"></script>
+  <!--Part of the restructuring of JS as a module system for the background service worker requirement of v3. Since we had to do the module conversion for bg.js, it became a bit of an all-or-nothing problem. The export in defaults breaks normal browser loading (where export is not allowed in default when it's not loaded as a module), which means we had to do the same module loading here as well.-->
 </body>
 </html>

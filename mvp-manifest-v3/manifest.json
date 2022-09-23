@@ -4,7 +4,8 @@
    "manifest_version": 3,
    "version": "0.1",
    "background": {
-      "service_worker": "background.js"
+      "service_worker": "background.js",
+      "type": "module"
    },
    "permissions": [ "activeTab", "tabs", "clipboardWrite", "contextMenus", "storage", "scripting" ],
    "host_permissions": ["*://*.docs.microsoft.com/*", "*://*.learn.microsoft.com/*" ],
