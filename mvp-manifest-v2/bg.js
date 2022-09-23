@@ -18,25 +18,32 @@ function copy(text) {
   //Update to take input(s).
   //Original hardcoded line: elem.value += '?wt.mc_id=CatalogApi';
 
- var trackingParam = document.getElementById("trackingParam");
+  // var trackingParam = document.getElementById("trackingParam");
+  chrome.storage.sync.get(['user_input'], function(result) {
+    console.log('Value currently is ' + result.user_input);
+    trackingParam = result.user_input;
+    if (trackingParam != null) {
+      // I don't think you are appending this correctly,
+      // Right not it just slabs it on the end
+      elem.value += trackingParam;
+      console.log('trackingParam was not null');
+    } else {
+      elem.value += '?wt.mc_id=LearnAppenderTool';
+      console.log('trackingParam was null');
+    }
+  
+    //elem.value += userInput;
+    elem.select();
+    document.execCommand('Copy', false, null);
+  });
 
-  if(trackingParam != null) {
-    elem.value += trackingParam;
-    console.log('trackingParam was not null');
-  } else {
-    elem.value += '?wt.mc_id=LearnAppenderTool';
-    console.log('trackingParam was null');
-  }
-
-  //elem.value += userInput;
-  elem.select();
-  document.execCommand('Copy', false, null);
+  
 }
 
 function setIcon(icon) {
   chrome.browserAction.setIcon({
-   // Original path: 'copy_' + icon + '_128.png'
-   path: 'icon/LearnAppenderIcon128.png'
+    // Original path: 'copy_' + icon + '_128.png'
+    path: 'icon/LearnAppenderIcon128.png'
   });
 }
 
@@ -55,10 +62,10 @@ function cleanURL(url) {
   a.href = url;
   //Original search line = a.search = removeTrackingTags(a.search.replace(/^\?/,''));
   //Only difference is (.*) removed.
-  a.search = removeTrackingTags(a.search.replace(/^\?(.*)/,''));
+  a.search = removeTrackingTags(a.search.replace(/^\?(.*)/, ''));
   //Debugging a.search
   //console.log('a.search = ' + a.href);
-  a.hash = removeTrackingTags(a.hash.replace(/^#/,''));
+  a.hash = removeTrackingTags(a.hash.replace(/^#/, ''));
   //Debugging a.hash 
   //console.log('a.hash = ' + a.href);
   return a.href
@@ -67,7 +74,7 @@ function cleanURL(url) {
 function removeTrackingTags(str) {
   return str
     .split('&')
-    .filter(function(item) {
+    .filter(function (item) {
       return debug = !/^(utm_|from=|_openstat)/.test(item);
     })
     .join('&');
@@ -77,11 +84,11 @@ function removeTrackingTags(str) {
 //Add logic to remove locale.
 //}
 
-chrome.runtime.onInstalled.addListener(function() {
+chrome.runtime.onInstalled.addListener(function () {
   chrome.contextMenus.create({
     'id': 'copy-page-url',
     'title': 'Copy URL and add tracking',
-    'contexts':[
+    'contexts': [
       'page',
       'selection',
       'link',
@@ -95,7 +102,7 @@ chrome.runtime.onInstalled.addListener(function() {
   chrome.contextMenus.create({
     'id': 'copy-frame-url',
     'title': 'Copy Frame URL',
-    'contexts':[
+    'contexts': [
       'frame'
     ]
   });
@@ -105,7 +112,7 @@ chrome.runtime.onInstalled.addListener(function() {
   });
 });
 
-chrome.contextMenus.onClicked.addListener(function(info) {
+chrome.contextMenus.onClicked.addListener(function (info) {
   if (info.menuItemId === 'copy-page-url') {
     copy(info.pageUrl);
   } else if (info.menuItemId === 'copy-frame-url') {
@@ -113,24 +120,24 @@ chrome.contextMenus.onClicked.addListener(function(info) {
   }
 });
 
-chrome.browserAction.onClicked.addListener(function(tab) {
+chrome.browserAction.onClicked.addListener(function (tab) {
   copy(tab.url);
   setBadgeText('OK!');
   clearTimeout(timeout);
   timeout = setTimeout(setBadgeText.bind(null, ''), 1000);
 });
 
-chrome.tabs.onActivated.addListener(function() {
+chrome.tabs.onActivated.addListener(function () {
   clearTimeout(timeout);
   setBadgeText('');
 });
 
-chrome.runtime.onMessage.addListener(function(message) {
+chrome.runtime.onMessage.addListener(function (message) {
   if (!message.options) {
     return;
   }
 
-  Object.keys(message.options).forEach(function(key) {
+  Object.keys(message.options).forEach(function (key) {
     options[key] = message.options[key];
   });
 
@@ -140,7 +147,7 @@ chrome.runtime.onMessage.addListener(function(message) {
   }
 });
 
-chrome.storage.sync.get(defaults, function(items) {
+chrome.storage.sync.get(defaults, function (items) {
   options = items;
   setIcon(items.toolbar_icon);
 });
