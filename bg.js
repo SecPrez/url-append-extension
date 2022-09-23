@@ -7,21 +7,36 @@ document.body.appendChild(elem);
 function copy(text) {
   if (options.clean_url) {
     elem.value = cleanURL(text);
-    //Debugging = console.log('Used CleanURL');
+    //Debugging = 
+    //console.log('Used CleanURL');
   } else {
     elem.value = text;
-    //Debugging = console.log('Did not use CleanURL');
+    //Debugging = 
+    //console.log('Did not use CleanURL');
   }
   //Change for value you want appended.
   //Update to take input(s).
-  elem.value += '?wt.mc_id=CatalogApi';
+  //Original hardcoded line: elem.value += '?wt.mc_id=CatalogApi';
+
+ var trackingParam = document.getElementById("trackingParam");
+
+  if(trackingParam != null) {
+    elem.value += trackingParam;
+    console.log('trackingParam was not null');
+  } else {
+    elem.value += '?wt.mc_id=LearnAppenderTool';
+    console.log('trackingParam was null');
+  }
+
+  //elem.value += userInput;
   elem.select();
   document.execCommand('Copy', false, null);
 }
 
 function setIcon(icon) {
   chrome.browserAction.setIcon({
-    path: 'copy_' + icon + '_128.png'
+   // Original path: 'copy_' + icon + '_128.png'
+   path: 'icon/LearnAppenderIcon128.png'
   });
 }
 
@@ -39,10 +54,13 @@ function cleanURL(url) {
   var a = document.createElement('a');
   a.href = url;
   //Original search line = a.search = removeTrackingTags(a.search.replace(/^\?/,''));
+  //Only difference is (.*) removed.
   a.search = removeTrackingTags(a.search.replace(/^\?(.*)/,''));
-  //Debugging = console.log('a.search = ' + a.search);
+  //Debugging a.search
+  //console.log('a.search = ' + a.href);
   a.hash = removeTrackingTags(a.hash.replace(/^#/,''));
-  //Debugging = console.log('a.hash = ' + a.hash);
+  //Debugging a.hash 
+  //console.log('a.hash = ' + a.href);
   return a.href
 }
 
