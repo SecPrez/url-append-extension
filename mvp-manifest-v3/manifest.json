@@ -10,7 +10,7 @@
    "permissions": [ "activeTab", "tabs", "clipboardWrite", "contextMenus", "storage", "scripting" ],
    "host_permissions": ["*://*.docs.microsoft.com/*", "*://*.learn.microsoft.com/*" ],
    "action": {
-      "default_popup": "options.html",
+      "default_title": "Copy to clipboard",
       "default_icons": {
          "16": "icon/learnAppenderIcon16.png",
          "32": "icon/learnAppenderIcon32.png",
