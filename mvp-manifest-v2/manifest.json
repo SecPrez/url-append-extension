@@ -20,6 +20,5 @@
       "open_in_tab":false
    },
    "permissions": [ "activeTab", "clipboardWrite", "contextMenus", "storage" ],
-   "update_url": "https://clients2.google.com/service/update2/crx",
    "version": "1.0"
 }
