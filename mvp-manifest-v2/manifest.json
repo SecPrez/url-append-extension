@@ -13,13 +13,12 @@
       "128": "icon/learnAppenderIcon128.png"
    },
    "manifest_version": 2,
-   "name": "Microsoft Learn URL Appender",
+   "name": "Microsoft Learn URL Appender - MV2",
    "options_ui": {
       "chrome_style": true,
       "page": "options.html",
       "open_in_tab":false
    },
    "permissions": [ "activeTab", "clipboardWrite", "contextMenus", "storage" ],
-   "update_url": "https://clients2.google.com/service/update2/crx",
-   "version": "0.1"
+   "version": "1.0"
 }

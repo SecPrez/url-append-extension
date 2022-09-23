@@ -1,8 +1,8 @@
 {
-   "name": "Microsoft Learn URL Appender v3",
+   "name": "Microsoft Learn URL Appender - MV3",
    "description": "Quickly copy a Microsoft Learn URL, with your desired tracking parameter appended.",
    "manifest_version": 3,
-   "version": "0.1",
+   "version": "1.0",
    "background": {
       "service_worker": "background.js"
    },
