@@ -14,22 +14,18 @@ function copy(text) {
     //Debugging = 
     //console.log('Did not use CleanURL');
   }
-  //Change for value you want appended.
-  //Update to take input(s).
-  //Original hardcoded line: elem.value += '?wt.mc_id=CatalogApi';
 
-  // var trackingParam = document.getElementById("trackingParam");
   chrome.storage.sync.get(['user_input'], function(result) {
-    console.log('Value currently is ' + result.user_input);
+    //console.log('Value currently is ' + result.user_input);
     trackingParam = result.user_input;
     if (trackingParam != null) {
       // I don't think you are appending this correctly,
       // Right not it just slabs it on the end
       elem.value += trackingParam;
-      console.log('trackingParam was not null');
+      //console.log('trackingParam was not null');
     } else {
       elem.value += '?wt.mc_id=LearnAppenderTool';
-      console.log('trackingParam was null');
+      //console.log('trackingParam was null');
     }
   
     //elem.value += userInput;
@@ -42,7 +38,6 @@ function copy(text) {
 
 function setIcon(icon) {
   chrome.browserAction.setIcon({
-    // Original path: 'copy_' + icon + '_128.png'
     path: 'icon/LearnAppenderIcon128.png'
   });
 }
@@ -52,10 +47,6 @@ function setBadgeText(text) {
     text: text
   });
 }
-
-//function endingInput() {
-// Need a function to take input of what the ending parameter(s) should be.
-//}
 
 function cleanURL(url) {
   var a = document.createElement('a');
@@ -81,7 +72,7 @@ function removeTrackingTags(str) {
 }
 
 //function removeLocale(str) {
-//Add logic to remove locale.
+//TODO: Add logic to remove locale.
 //}
 
 chrome.runtime.onInstalled.addListener(function () {
