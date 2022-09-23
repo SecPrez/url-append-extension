@@ -7,7 +7,7 @@
       "service_worker": "background.js"
    },
    "permissions": [ "activeTab", "clipboardWrite", "contextMenus", "storage", "scripting" ],
-   "host_permissions": ["<all_urls>"],
+   "host_permissions": ["*://*.docs.microsoft.com/*", "*://*.learn.microsoft.com/*" ],
    "action": {
       "default_popup": "options.html",
       "default_icons": {
