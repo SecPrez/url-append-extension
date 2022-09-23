@@ -25,9 +25,7 @@ After clicking on the extension icon in the browser UI, or selecting the copy op
 
 ## Roadmap
 
-* Add a (multi) input so users can input their own tracking parameter (one-time) in the settings for it to use going forward.
 * Add a picker, so if they’ve inputted multiple parameters they may want to use - they can easily toggle for which one they want.
-* UI improvements
 * Port to Edge
 * Upload to Chrome/Edge extension libraries.
 * Add validation to not have it work on non-Learn sites.

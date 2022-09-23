@@ -36,7 +36,7 @@ chrome.runtime.onInstalled.addListener(function() {
     ]
   });
 
-  chrome.browserAction.setIcon({
+  chrome.action.setIcon({
     path: 'icon/LearnAppenderIcon128.png'
    });
    
