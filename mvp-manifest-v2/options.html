@@ -27,6 +27,8 @@
       overflow: hidden; /* Hide scrollbars */
    }
   </style>
+
+ 
 </head>
 <body>
 <!----<div>
@@ -46,7 +48,9 @@
   <label for="trackingParam">Tracking parameter to append</label><br>  
   <input type="text" name="trackingParam" id="trackingParam" value="">
   <br><br>
-  <button id="save" onclick="saveAndApply()">Save</button>
+  <!-- For some reason chrome will not let you directly reference event callbacks
+  You must wait for the page to load and then register them -->
+  <button id="save">Save</button>
   <div id="status"></div>
 </div>
 <br>
