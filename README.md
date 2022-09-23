@@ -4,7 +4,7 @@ This is a Google Chrome extension that allows you to do a one-time configuration
 
 ## Installation
 
-This extension is not yet available in the Chrome extension store, so will have to be side-loaded. [Here is a CNET article](https://www.cnet.com/tech/services-and-software/how-to-install-chrome-extensions-manually/) that explains how to.
+This extension is not yet available in the Chrome extension store, so will have to be side-loaded in the meantime. [Here is a CNET article](https://www.cnet.com/tech/services-and-software/how-to-install-chrome-extensions-manually/) that explains how to.
 
 ## Project Flavors
 
