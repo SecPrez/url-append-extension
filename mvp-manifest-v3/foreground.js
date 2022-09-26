@@ -1,77 +1,56 @@
-var options;
-var timeout;
+// This file is not needed 
+// This is not needed as this there is no foreground for this project
+// var options;
+// var timeout;
 
-var elem = document.createElement('input');
-document.body.appendChild(elem);
+// var elem = document.createElement('input');
+// document.body.appendChild(elem);
 
-function copy(text) {
-  if (options.clean_url) {
-    elem.value = cleanURL(text);
-    //Debugging = 
-    //console.log('Used CleanURL');
-  } else {
-    elem.value = text;
-    //Debugging = 
-    //console.log('Did not use CleanURL');
-  }
+// function copy(text) {
+//   if (options.clean_url) {
+//     elem.value = cleanURL(text);
+//     //Debugging = 
+//     //console.log('Used CleanURL');
+//   } else {
+//     elem.value = text;
+//     //Debugging = 
+//     //console.log('Did not use CleanURL');
+//   }
 
-  chrome.storage.sync.get(['user_input'], function(result) {
-    //console.log('Value currently is ' + result.user_input);
-    trackingParam = result.user_input;
-    if (trackingParam != null) {
-      // I don't think you are appending this correctly,
-      // Right not it just slabs it on the end
-      elem.value += trackingParam;
-      //console.log('trackingParam was not null');
-    } else {
-      elem.value += '?wt.mc_id=LearnAppenderTool';
-      //console.log('trackingParam was null');
-    }
+//   chrome.storage.sync.get(['user_input'], function(result) {
+//     //console.log('Value currently is ' + result.user_input);
+//     trackingParam = result.user_input;
+//     if (trackingParam != null) {
+//       // I don't think you are appending this correctly,
+//       // Right not it just slabs it on the end
+//       elem.value += trackingParam;
+//       //console.log('trackingParam was not null');
+//     } else {
+//       elem.value += '?wt.mc_id=LearnAppenderTool';
+//       //console.log('trackingParam was null');
+//     }
   
-    //elem.value += userInput;
-    elem.select();
-    document.execCommand('Copy', false, null);
-  });
+//     //elem.value += userInput;
+//     elem.select();
+//     document.execCommand('Copy', false, null);
+//   });
 
   
-}
+// }
 
-function setIcon(icon) {
-  chrome.action.setIcon({
-    path: 'icon/LearnAppenderIcon128.png'
-  });
-}
+// function setIcon(icon) {
+//   chrome.action.setIcon({
+//     path: 'icon/LearnAppenderIcon128.png'
+//   });
+// }
 
-function setBadgeText(text) {
-  chrome.action.setBadgeText({
-    text: text
-  });
-}
+// function setBadgeText(text) {
+//   chrome.action.setBadgeText({
+//     text: text
+//   });
+// }
 
-function cleanURL(url) {
-  //Original: 
-  //var a = document.createElement('a');
-  //a.href = url;
-  var a = new URL(url);
-  //Original search line = a.search = removeTrackingTags(a.search.replace(/^\?/,''));
-  //Only difference is (.*) removed.
-  a.search = removeTrackingTags(a.search.replace(/^\?(.*)/, ''));
-  //Debugging a.search
-  //console.log('a.search = ' + a.href);
-  a.hash = removeTrackingTags(a.hash.replace(/^#/, ''));
-  //Debugging a.hash 
-  //console.log('a.hash = ' + a.href);
-  return a.href
-}
 
-function removeTrackingTags(str) {
-  return str
-    .split('&')
-    .filter(function (item) {
-      return debug = !/^(utm_|from=|_openstat)/.test(item);
-    })
-    .join('&');
-}
 
 //function removeLocale(str) {
 //TODO: Add logic to remove locale.
